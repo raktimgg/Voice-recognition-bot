@@ -11,7 +11,7 @@ for j in range(0,80):
 	for y in range(1 ,p,p/25):   
 		for i in range(0,y-1):      #adding empty elements in the array in the start
 			new_data[i] =y1[i]
-		for i in range(y,25000-x+y-1):
+		for i in range(y,25000-p+y-1):
 			new_data[i] =data[i-y]
 		for i in range(25000-y , 24999):    #adding empty elements in the array in the end 
 			new_data[i] = y1[i]	
