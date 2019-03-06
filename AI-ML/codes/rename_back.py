@@ -1,11 +1,13 @@
 import numpy as np
-import soundfile as sf
-new_data = np.empty([25000,])
-y1 = np.empty([25000,])
-for j in range(1,2001):
-	b= "back"+str(j)+".wav"
-	data, samplerate = sf.read(b)
-	print len(data)
-
+import os
+path = os.getcwd()
+print path
+filenames = os.listdir(path)
+i=0
+for f in filenames:
+	a = "back"+str(i)+".wav"
+	os.rename(f,a)
+	i = i+1
+	print a
 			
 
