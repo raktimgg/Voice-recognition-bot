@@ -24,16 +24,16 @@ def sigmoidprime(x):                          # derivative of sigmoid function
 
 
 
-y0 = np.empty([6250,4043])                    # reading all the back.wav files, coverting to mfcc format, adding labels and storing in an array
-for j in range(0,6250):
+y0 = np.empty([2000,4043])                    # reading all the back.wav files, coverting to mfcc format, adding labels and storing in an array
+for j in range(0,2000):
     b = "back"+str(j)+".wav"
     #print b
     data, samplerate = sf.read(b)
     data1 = mfcc(data,samplerate)
     data = data1.reshape(4043,)
     y0[j]=data
-y = np.empty([6250,5])
-for i in range (0,6250):                      # manually assigning labels
+y = np.empty([2000,5])
+for i in range (0,2000):                      # manually assigning labels
     y[i][0]=1.0
     y[i][1]=0.0
     y[i][2]=0.0
@@ -42,17 +42,17 @@ for i in range (0,6250):                      # manually assigning labels
 y0l = np.append(y0,y,axis=1)
 print("y0l shape {}".format(y0l.shape))
 
-y1 = np.empty([6250,4043])
+y1 = np.empty([2000,4043])
 
-for j in range(0,6250):                       # reading all the forward.wav files, coverting to mfcc format, adding labels and storing in an array
+for j in range(0,2000):                       # reading all the forward.wav files, coverting to mfcc format, adding labels and storing in an array
     b = "forward"+str(j)+".wav"
     #print b
     data, samplerate = sf.read(b)
     data1 = mfcc(data,samplerate)
     data = data1.reshape(4043,)
     y1[j]=data
-y = np.empty([6250,5])
-for i in range (0,6250):                      # manually assigning labels
+y = np.empty([2000,5])
+for i in range (0,2000):                      # manually assigning labels
     y[i][0]=0.0
     y[i][1]=1.0
     y[i][2]=0.0
@@ -61,17 +61,17 @@ for i in range (0,6250):                      # manually assigning labels
 y1l = np.append(y1,y,axis=1)
 print("y1l shape {}".format(y1l.shape))  
 
-y2 = np.empty([6250,4043])
+y2 = np.empty([2000,4043])
 
-for j in range(0,6250):                        # reading all the left.wav files, coverting to mfcc format, adding labels and storing in an array  
+for j in range(0,2000):                        # reading all the left.wav files, coverting to mfcc format, adding labels and storing in an array  
     b = "left"+str(j)+".wav"
     #print b
     data, samplerate = sf.read(b)
     data1 = mfcc(data,samplerate)
     data = data1.reshape(4043,)
     y2[j]=data
-y = np.empty([6250,5])
-for i in range (0,6250):                        # manually assigning labels
+y = np.empty([2000,5])
+for i in range (0,2000):                        # manually assigning labels
     y[i][0]=0.0
     y[i][1]=0.0
     y[i][2]=1.0
@@ -80,16 +80,16 @@ for i in range (0,6250):                        # manually assigning labels
 y2l = np.append(y2,y,axis=1)
 print("y2l shape {}".format(y2l.shape))
 
-y3 = np.empty([6250,4043])                      # reading all the right.wav files, coverting to mfcc format, adding labels and storing in an array
-for j in range(0,6250):
+y3 = np.empty([2000,4043])                      # reading all the right.wav files, coverting to mfcc format, adding labels and storing in an array
+for j in range(0,2000):
     b = "right"+str(j)+".wav"
     #print b
     data, samplerate = sf.read(b)
     data1 = mfcc(data,samplerate)
     data = data1.reshape(4043,)
     y3[j]=data
-y = np.empty([6250,5])
-for i in range (0,6250):                        # manually assigning labels
+y = np.empty([2000,5])
+for i in range (0,2000):                        # manually assigning labels
     y[i][0]=0.0
     y[i][1]=0.0
     y[i][2]=0.0
@@ -98,16 +98,16 @@ for i in range (0,6250):                        # manually assigning labels
 y3l = np.append(y3,y,axis=1)
 print("y3l shape {}".format(y3l.shape))  
 
-y4 = np.empty([6250,4043])                      # reading all the stop.wav files, coverting to mfcc format, adding labels and storing in an array   
-for j in range(0,6250):
+y4 = np.empty([2000,4043])                      # reading all the stop.wav files, coverting to mfcc format, adding labels and storing in an array   
+for j in range(0,2000):
     b = "stop"+str(j)+".wav"
     #print b
     data, samplerate = sf.read(b)
     data1 = mfcc(data,samplerate)
     data = data1.reshape(4043,)
     y4[j]=data
-y = np.empty([6250,5])
-for i in range (0,6250):                         # manually assigning labels
+y = np.empty([2000,5])
+for i in range (0,2000):                         # manually assigning labels
     y[i][0]=0.0
     y[i][1]=0.0
     y[i][2]=0.0
@@ -122,25 +122,25 @@ print("y4l shape {}".format(y4l.shape))
 
 
 
-trains = np.empty([27500,4048])                   # using the first 5500 elements of each word in the train set 
+trains = np.empty([8750,4048])                   # using the first 1750 elements of each word in the train set 
 k=0
-for j in range(0,5500):
+for j in range(0,1750):
     trains[j]=y0l[k]
     k=k+1 
 k=0
-for j in range(5500,11000):
+for j in range(1750,3500):
     trains[j]=y1l[k]
     k=k+1 
 k=0
-for j in range(11000,16500):
+for j in range(3500,5250):
     trains[j]=y2l[k]
     k=k+1 
 k=0
-for j in range(16500,22000):
+for j in range(5250,7000):
     trains[j]=y3l[k]
     k=k+1 
 k=0
-for j in range(22000,27500):
+for j in range(7000,8750):
     trains[j]=y4l[k]
     k=k+1 
 print("trains shape {}".format(trains.shape))
@@ -151,24 +151,24 @@ np.random.shuffle(trains)
 
 
 
-tests = np.empty([3750,4048])                      # using the last 750 elements of each array in the test set
-k = 5500
-for j in range(0,750):
+tests = np.empty([1250,4048])                      # using the last 250 elements of each array in the test set
+k = 1750
+for j in range(0,250):
     tests[j]=y0l[k]
     k=k+1
-k = 5500    
-for j in range(750,1500):
+k = 1750    
+for j in range(250,500):
     tests[j]=y1l[k]
     k=k+1
-k = 5500 
-for j in range(1500,2250):
+k = 1750 
+for j in range(500,750):
     tests[j]=y2l[k]
     k=k+1
-k = 5500 
+k = 1750 
 for j in range(2250,3000):
     tests[j]=y3l[k]
     k=k+1 
-k = 5500
+k = 1750
 for j in range(3000,3750):
     tests[j]=y4l[k]
     k=k+1 
@@ -238,17 +238,17 @@ b  = np.random.rand(1 , nOut)
 
 
       
-trainX = np.empty([27500,4043])                         # spliting of train set into features and labels          
-trainY = np.empty([27500,5])
-for i in range(0,27500):
+trainX = np.empty([8750,4043])                         # spliting of train set into features and labels          
+trainY = np.empty([8750,5])
+for i in range(0,8750):
     trainX[i]=trains[i][:4043]
-for i in range(0,27500):
+for i in range(0,8750):
     trainY[i]=trains[i][4043:]
 print("trainX shape {}".format(trainX.shape))
 print("trainY shape {}".format(trainY.shape))
 
-testX = np.empty([3750,4043])                           # spliting of test set into features and labels  
-testY = np.empty([3750,5])
+testX = np.empty([1250,4043])                           # spliting of test set into features and labels  
+testY = np.empty([12500,5])
 for i in range(0,3750):
     testX[i]=tests[i][:4043]
 for i in range(0,3750):
