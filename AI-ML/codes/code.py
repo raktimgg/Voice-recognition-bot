@@ -9,10 +9,10 @@ def sigmoid(x):                                #defining sigmoid function
     x = x.reshape(nOut,1)
     x = x
     for  i in range (0,5):
-	if x[i] < -700:                            # to prevent overflow error, we have manually defined it to be 0, when input is very low
-	    x[i]=0
-	else:
-	    x[i] = 1/(1+np.exp(-x[i]))	
+        if x[i] < -700:                            # to prevent overflow error, we have manually defined it to be 0, when input is very low
+            x[i]=0
+        else:
+            x[i] = 1/(1+np.exp(-x[i]))  
     x=x.reshape(-1,nOut)
     return x
 nOut = 5
@@ -38,7 +38,7 @@ for i in range (0,2000):                      # manually assigning labels
     y[i][1]=0.0
     y[i][2]=0.0
     y[i][3]=0.0
-    y[i][4]=0.0	
+    y[i][4]=0.0 
 y0l = np.append(y0,y,axis=1)
 print("y0l shape {}".format(y0l.shape))
 
@@ -165,11 +165,11 @@ for j in range(500,750):
     tests[j]=y2l[k]
     k=k+1
 k = 1750 
-for j in range(2250,3000):
+for j in range(750,1000):
     tests[j]=y3l[k]
     k=k+1 
 k = 1750
-for j in range(3000,3750):
+for j in range(1000,1250):
     tests[j]=y4l[k]
     k=k+1 
 print("tests shape {}".format(tests.shape))
@@ -248,10 +248,10 @@ print("trainX shape {}".format(trainX.shape))
 print("trainY shape {}".format(trainY.shape))
 
 testX = np.empty([1250,4043])                           # spliting of test set into features and labels  
-testY = np.empty([12500,5])
-for i in range(0,3750):
+testY = np.empty([1250,5])
+for i in range(0,1250):
     testX[i]=tests[i][:4043]
-for i in range(0,3750):
+for i in range(0,1250):
     testY[i]=tests[i][4043:]
 print("testX shape {}".format(testX.shape))
 print("testY shape {}".format(testY.shape))
@@ -289,4 +289,3 @@ np.savetxt('W1.out',W1,delimiter = ',')                # values of W1 and b stor
 np.savetxt('b.out',b,delimiter = ',')
 nE1 = np.linspace(1,nEpochs,nEpochs)                   # plotting loss with respect to no. of epochs
 plt.plot(nE1,losses)
-
