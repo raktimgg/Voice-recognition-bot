@@ -13,7 +13,7 @@ for j in range(0,80):
 			new_data[i] =y1[i]
 		for i in range(y,25000-p+y-1):
 			new_data[i] =data[i-y]
-		for i in range(25000-y , 24999):    #adding empty elements in the array in the end 
+		for i in range(25000-p+y , 24999):    #adding empty elements in the array in the end 
 			new_data[i] = y1[i]	
 		a = "back__"+str(j) +"_"+str(y)+".wav"    #total length becomes 25000
 		sf.write(a, new_data, samplerate)  #audio files are written back to harddisk
